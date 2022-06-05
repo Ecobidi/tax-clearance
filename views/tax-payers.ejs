@@ -1,0 +1,68 @@
+<%- include ('partials/top') %>
+<div class="row">
+  <div class="col-12 py-4">
+    <div class="d-flex justify-content-between">
+      <h2>Tax Payers</h2>
+      <div>
+        <a href="/tax_payers/new" class="btn btn-primary">Register Tax Payer</a>
+      </div>
+    </div>
+  </div>
+  <% if (success_msg && success_msg.length > 0) { %>
+    <div class="col-12">
+      <div class="alert alert-success alert-dismissible fade show text-center" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <strong><%= success_msg %></strong> 
+      </div>
+      <script>
+        $(".alert").alert();
+      </script>
+    </div>
+    <% } %>
+  <div class="col-12 py-4">
+    <form class="form-inline" method="GET" action="/tax_payers">
+      <div class="form-group py-2">
+        <input class="form-control" name="search" placeholder="Tax payer name...">
+        <button type="submit" class="btn btn-sm btn-primary">Search</button>
+      </div>
+    </form>
+    <h4 class="mb-0 bg-primary py-2 text-white text-center mt-4">List of Tax Payers</h4>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>T.I.N.</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Phone</th>
+          <th>Employment Status</th>
+          <th>Job Title</th>
+          <th>Salary Grade</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% tax_payers.forEach(m => { %>
+          <tr>
+            <td><small><%= m._id %></small></td>
+            <td><small><%= m.surname + " " + m.first_name + " " + m.middle_name %></small></td>
+            <td><small><%= m.email %></small></td>
+            <td><small><%= m.phone %></small></td>
+            <td><small><%= m.employment_status %></small></td>
+            <td><small><%= m.job_title %></small></td>
+            <td><small><%= m.salary_grade_level %></small></td>
+            
+            <td>
+              <a class="btn btn-danger btn-sm text-white" href='<%= "/tax_payers/remove/" + m._id %>'>Remove</a>
+          </td>
+          </tr>
+        <% }) %>
+        <tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+</div>
+
+<%- include ('partials/bottom') %>

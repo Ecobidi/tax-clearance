@@ -1,0 +1,82 @@
+<%- include ('partials/top') %>
+<div class="row">
+  <div class="col-12 py-4">
+    <div class="d-flex justify-content-between">
+      <h2>Mortgage Loans</h2>
+      <div>
+        <a href="/loans/new" class="btn btn-primary">New Loan Application</a>
+      </div>
+    </div>
+  </div>
+  <div class="col-12">
+    <div>
+      <% if (success_msg && success_msg.length > 0) { %>
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <strong><%= success_msg %></strong> 
+        </div>
+        <script>
+          $(".alert").alert();
+        </script>
+      <% } %>
+    </div>
+    <div>
+      <% if (error_msg && error_msg.length > 0) { %>
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <strong><%= error_msg %></strong> 
+        </div>
+        <script>
+          $(".alert").alert();
+        </script>
+      <% } %>
+    </div>
+  </div>
+  <div class="col-12 py-4">
+    <form class="form-inline" method="GET" action="/loans">
+      <div class="form-group py-2">
+        <input class="form-control" name="search">
+        <button type="submit" class="btn btn-sm btn-primary">Search</button>
+      </div>
+    </form>
+    <h4 class="mb-0 bg-primary py-2 text-white text-center mt-4">List of Mortgage Loans</h4>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Reference ID</th>
+          <th>Borrower Name</th>
+          <th>Loan Type</th>
+          <th>Loan Plan</th>
+          <th>Amount (NGN) &#8358;)</th>
+          <th>Purpose</th>
+          <th>Status</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% loans.forEach(m => { %>
+          <tr>
+            <td><small><%= m._id  %></small></td>
+            <td><small><%= m.borrower.surname + ", " + m.borrower.first_name + " " + m.borrower.middle_name %></small></td>
+            <td><small><%= m.type.name %></small></td>
+            <td><small><%= m.plan.months + " months at " + m.plan.interest + " % interest" %></small></td>
+            <td><small><%= m.amount %></small></td>
+            <td><small><%= m.purpose %></small></td>
+            <td><small><%= m.status %></small></td>
+            <td>
+              <a class="btn btn-danger btn-sm text-white" href='<%= "/loans/remove/" + m._id %>'>Remove</a>
+          </td>
+          </tr>
+        <% }) %>
+        <tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+</div>
+
+<%- include ('partials/bottom') %>

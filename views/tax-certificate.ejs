@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" sizes="96x96" href="/images/favicon-96x96.png">
+  <link rel="stylesheet" href="/css/bootstrap.min.css" type="text/css" />
+  <link rel="stylesheet" href="/css/font-awesome.min.css" type="text/css" />
+  <link rel="stylesheet" href="/css/app.css" type="text/css" />
+  <link rel="stylesheet" href="/css/style2.css" type="text/css" />
+  <title>Dashboard | <%= appname %></title>
+</head>
+<body>
+<div class="container" style="max-width: 720px; border: 2px solid #111111;">
+  <div class="text-center">
+    <div>
+      <img src="/images/FIRS.jpg" class="firs-logo" style="height: 170px; width: 150px;">
+    </div>
+    <h4>GOVERNMENT OF NIGERIA</h4>
+    <h5>MINISTRY OF FINANCE</h5>
+    <div class="py-3">
+      <h3>TAX COMPLIANCE CERTIFICATE</h3>
+    </div>
+  </div>
+  <div class="d-flex w-100 justify-content-between align-items-center py-3">
+    <div class="mb-3"><p style="width: 100%">Taxpayer Identification Number (TIN): </p>  <p class="pb-2" style="border-bottom: 1px solid #111111;" ><%= tax_payment._id %></p></div>
+    <div class="mb-3"><p style="width: 100%;">Taxpayer Name: </p>  <p class="pb-2" style="border-bottom: 1px solid #111111;" ><%= tax_payment.tax_payer_name  %></p></div>
+  </div>
+  <p>
+    This certifies that the holder of this tax compliance certificate has fulfilled their tax obligations to teh Ministry of Finance, Government of Nigeria as at the date of issues.
+  </p>
+  <div>
+    <div class="mb-3"><span style="width: 50%">Issue Date: </span> <span class="pb-2" style="border-bottom: 1px solid #111111;" ><%= tax_payment.date_of_payment.toLocaleString("fr")%></span></div>
+    <div><span style="width: 50%;">Expiry Date(1 Yr.): </span> <span class="pb-2" style="border-bottom: 1px solid #111111;" ><%= new Date(tax_payment.date_of_payment.setFullYear(tax_payment.date_of_payment.getFullYear() + 1)).toLocaleString("fr") %></span></div>
+  </div>
+
+  <div class="pt-3">
+    <h1 class="display-4" style="font-family: cursive;">FIRS</h1>
+    <p>Signed by the Director</p>
+    <p>In the event that the Certificate is used for the granting of any facility by your institution, the Ministry of Finance will not be held for any default on the part of the taxpayer.
+  </div>
+</div>
+
+<script src="/js/jquery.min.js"></script>
+<script src="/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

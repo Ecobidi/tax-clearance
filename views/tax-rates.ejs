@@ -1,0 +1,68 @@
+<%- include ('partials/top') %>
+
+<div class="row space">
+  <div class="col-12 d-flex justify-content-between align-items-center underline pb-2">
+    <h3 class="title">Tax Rate</h3>
+    <div>
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#newCategoryModal">Add Tax Rate</button>
+    </div>
+  </div> 
+</div>
+
+<div class="row">
+  <div class="col-12">
+    <h4 class="font-weight-light text-center text-white bg-primary p-2 m-0 table-top">List of Tax Rates</h4>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Tax Rate (%)</th>
+          <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+          <% tax_rates.forEach((c) => { %>
+            <tr>
+              <td><%= c.name %></td>
+              <td><%= c.rate %> %</td>
+              <td>
+                <a href='<%= "/tax_rates/remove/" + c._id %>' class="btn btn-sm btn-danger">Remove</a>
+              </td>
+            </tr>
+          <% }) %>
+        </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- Add New Category Modal -->
+<div class="modal fade" id="newCategoryModal" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+<div class="modal-dialog modal-lg" role="document">
+<div class="modal-content">
+  <div class="modal-header">
+    <h5 class="modal-title">New Tax Rate</h5>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+  </div>
+
+  <div class="modal-body">
+    <form action="/tax_rates/new" method="POST" class="row">
+      <div class="form-group col-12">
+        <label>Tax Rate Name:</label>
+        <input required type="text" class="form-control" name="name">
+      </div>
+      <div class="form-group col-12">
+        <label>Tax Rate (%):</label>
+        <input required type="number" class="form-control" name="rate">
+      </div>
+      <div class="form-group col-12">
+        <input type="submit" class="btn btn-primary form-control" value="Proceed">
+      </div>
+    </form>
+  </div>
+</div>
+</div>
+</div>
+
+<%- include ('partials/bottom') %>

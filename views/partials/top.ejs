@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" sizes="96x96" href="/images/favicon-96x96.png">
+  <link rel="stylesheet" href="/css/bootstrap.min.css" type="text/css" />
+  <link rel="stylesheet" href="/css/font-awesome.min.css" type="text/css" />
+  <link rel="stylesheet" href="/css/app.css" type="text/css" />
+  <link rel="stylesheet" href="/css/style2.css" type="text/css" />
+  <title>Dashboard | <%= appname %></title>
+</head>
+<body>
+  <nav class="navbar navbar-dark" style="background-color: #9e1623 !important;">
+		<a class="navbar-brand" href="/"><img class="logo-brand mr-4" src="/images/FIRS.jpg" alt=""> <%= appname %></a>
+  </nav>
+  
+	<main class="main">
+		<aside class="sidenav">
+      <ul class="nav">
+        <li class="nav-item">
+          <a href="/" class="nav-link"><i class="fa fa-dashboard mr-2" aria-hidden="true"></i> Dashboard</a>
+        </li>
+        <li class="nav-item">
+          <a href="/tax_payers" class="nav-link"><i class="fa fa-id-badge mr-2" aria-hidden="true"></i> Tax Payers</a>
+        </li>
+        <li class="nav-item">
+          <a href="/tax_rates" class="nav-link"><i class="fa fa-object-group mr-2" aria-hidden="true"></i> Tax Rates</a>
+        </li>
+        <li class="nav-item">
+          <a href="/tax_payments" class="nav-link"><i class="fa fa-money mr-2" aria-hidden="true"></i> Tax Payments</a>
+        </li>
+        <li class="nav-item">
+          <a href="/users" class="nav-link"><i class="fa fa-users mr-2" aria-hidden="true"></i> Users</a>
+        </li>
+        <li class="nav-item">
+          <a href="/logout" class="nav-link"><i class="fa fa-sign-out mr-2" aria-hidden="true"></i> Logout</a>
+        </li>
+      </ul>
+    </aside>
+
+    <section class="main-section">
+      <div class="container-fluid">

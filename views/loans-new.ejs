@@ -1,0 +1,87 @@
+<%- include ('partials/top') %>
+  <div class="row space">
+    
+    <div class="col-md-8 offset-md-2 bg-white p-4">
+      <h2 class="mb-3">New Loan Application</h2>
+
+      <div>
+        <% if (success_msg && success_msg.length > 0) { %>
+          <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <strong><%= success_msg %></strong> 
+          </div>
+          <script>
+            $(".alert").alert();
+          </script>
+        <% } %>
+      </div>
+
+      <form action="/loans/new" class="row" method="POST">
+        <div class="form-group col-12">
+          <label>Select Borrower</label>
+          <select class="form-control" name="borrower" required>
+            <option></option>
+            <% borrowers.forEach(c => { %>
+              <option value='<%= c._id %>'><%= c.surname + " " + c.first_name + " " + c.middle_name + " (" + c.email + ")" %></option>
+            <% }) %>
+          </select>
+        </div>
+        <div class="form-group col-12">
+          <label>Select Mortgage Type</label>
+          <select class="form-control" name="type" required>
+            <option></option>
+            <% types.forEach(c => { %>
+              <option value='<%= c._id %>'><%= c.name %></option>
+            <% }) %>
+          </select>
+        </div>
+        <div class="form-group col-12">
+          <label>Select Mortgage Plan</label>
+          <select class="form-control" name="plan" required>
+            <option></option>
+            <% plans.forEach(c => { %>
+              <option value='<%= c._id %>'><%= "Duration: " + c.months + " months at interest of " + c.interest %></option>
+            <% }) %>
+          </select>
+        </div>
+
+        <div class="form-group col-6">
+          <label>Loan Amount (Currency: (NGN) &#8358;)</label>
+          <input required class="form-control" type="number" name="amount">
+        </div>
+
+        <div class="form-group col-6">
+          <label>Loan Status</label>
+          <select class="form-control" name="status">
+            <option></option>
+            <option value="awaiting approval">Awaiting Approval</option>
+            <option value="approved">Approved</option>
+            <option value="denied">Denied</option>
+            <option value="released">Released</option>
+          </select>
+        </div>
+
+        <div class="form-group col-6">
+          <label>Date of Loan Release</label>
+          <input required class="form-control" type="date" name="date_released">
+        </div>
+
+        <div class="form-group col-12">
+          <label>Purpose:</label>
+          <textarea class="form-control" required name="purpose"></textarea>
+        </div>
+
+        <div class="form-group col-12">
+          <button type="submit" class="btn btn-primary btn-block">Save Mortgage Application</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</main>
+</div>
+</div> 
+
+
+<%- include ('partials/bottom') %>
